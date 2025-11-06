@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contato - OfertMatch</title>
+  <link rel="stylesheet" href="home_empresa.css" />
+
+  <style>
+    /* ===== ESTILO LEVE PARA CONTATO ===== */
+    body {
+      background: var(--bg, #f4f7fa);
+      color: var(--text, #1a1a1a);
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .theme-dark body {
+      --bg: #0a1929;
+      --text: #e6eef8;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .theme-dark main {
+      background: rgba(15, 25, 35, 0.9);
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      color: #1d7a4e;
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    /* ===== FORMULÁRIO ===== */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      resize: none;
+      transition: 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #1d7a4e;
+      box-shadow: 0 0 5px rgba(29, 122, 78, 0.3);
+    }
+
+    button {           
+      color: #1d7a4e;                 /* texto branco sempre visível */
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 40px;
+      background: #1d7a4e;
+      color: #fff;
+      text-align: center;
+      padding: 20px 10px;
+      border-radius: 8px;
+    }
+
+    footer .social {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    footer .social a {
+      color: #fff;
+      font-size: 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer .social a:hover {
+      color: #cce9da;
+    }
+
+    @media (max-width: 600px) {
+      main { margin: 60px 15px; }
+    }
+  </style>
+</head>
+
+<!-- ====== MENU LATERAL DIREITO (painel de opções) ====== -->
+<aside class="menu-opcoes" id="menuOpcoes" aria-label="Opções" aria-hidden="true">
+  <div class="op-header">
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="op-logo" />
+  </div>
+
+  <nav class="op-list">
+    <button type="button" class="op-item" id="opPerfil">
+      <span class="op-ico">👤</span>
+      <span class="op-txt">Perfil</span>
+    </button>
+
+    <button type="button" class="op-item" id="opAlterarTema">
+      <span class="op-ico">🌓</span>
+      <span class="op-txt">Alterar Tema</span>
+    </button>
+
+    <button type="button" class="op-item" id="opSair">
+      <span class="op-ico">🚪</span>
+      <span class="op-txt">Sair</span>
+    </button>
+  </nav>
+</aside>
+
+
+
+<body>
+  <!-- ===== MENU LATERAL ===== -->
+  <nav class="menu-lateral" id="menuLateral">
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="logo_menu" />
+    <ul>
+      <li><a href="home_empresa.html"><img src="img/icon_home.png" class="icons_menu"> Início</a></li>
+      <li><a href="lista_ofertas.html"><img src="img/icon_lista_produtos.png" class="icons_menu"> Lista de Produtos</a></li>
+      <li><a href="lista_produtos.html"><img src="img/icon_promocao.png" class="icons_menu"> Lista de Ofertas</a></li>
+      <li><a href="endereco.html"><img src="img/icon_localizacao.png" class="icons_menu"> Endereço</a></li>
+      <li><a href="sobre.html"><img src="img/icon_sobre.png" class="icons_menu"> Sobre</a></li>
+      <li><a href="contato.html" class="active"><img src="img/icon_contato.png" class="icons_menu"> Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- OVERLAY DO MENU -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ====== CABEÇALHO ====== -->
+    <header>
+      <!-- abre/fecha o menu esquerdo -->
+      <button id="btnMenu" aria-controls="menuLateral" aria-expanded="false" aria-label="Abrir menu lateral">☰</button>
+
+      <!-- Logo -->
+      <img src="img/Logo_Menor.png" alt="OfertMatch" class="logo" />
+
+      <!-- Ações à direita: tema + opções -->
+      <div class="header-actions" style="display:flex; align-items:center; gap:10px;">
+        <!-- Botão tema: Script já troca ícone e persiste no localStorage -->
+        <button id="btnTheme" class="btn-theme" aria-pressed="false" aria-label="Ativar tema escuro" title="Tema escuro">🌙</button>
+
+        <!-- Botão de configurações: abre o painel direito -->
+        <button id="btnConfig" aria-label="Abrir opções">⚙</button>
+      </div>
+    </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <h1>Entre em Contato</h1>
+    <p>Envie uma mensagem para a equipe do OfertMatch. Retornaremos o mais breve possível!</p>
+
+    <form id="formContato">
+      <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+      <input type="email" id="email" name="email" placeholder="Seu e-mail" required>
+      <textarea id="mensagem" name="mensagem" rows="4" placeholder="Digite sua mensagem..." required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+
+    <footer>
+      <div class="social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i> 🌐</a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i> 💼</a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i> 💻</a>
+      </div>
+      <p>© 2025 OfertMatch — Todos os direitos reservados.</p>
+    </footer>
+  </main>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+
+  <!-- Simula envio de mensagem -->
+  <script>
+    document.getElementById("formContato").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Mensagem enviada com sucesso! Entraremos em contato em breve.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>

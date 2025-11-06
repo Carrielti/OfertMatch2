@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup de Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background: #f5f6f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    button#openPopup {
+        padding: 10px 20px;
+        background-color: #0f2940;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .popup-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .popup {
+        background: #e2e5e9;
+        border-radius: 16px;
+        width: 340px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .popup-header {
+        background: #0f2940;
+        color: white;
+        text-align: center;
+        padding: 20px 10px;
+        position: relative;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .popup-header h2 {
+        margin: 0;
+        font-size: 1.5em;
+        font-weight: 700;
+    }
+
+    .popup-header .close {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        cursor: pointer;
+        font-size: 24px;
+    }
+
+    .popup-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+    }
+
+    .popup-form label {
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .popup-form input {
+        padding: 10px;
+        border: 2px solid #0f2940;
+        border-radius: 8px;
+        outline: none;
+    }
+
+    .popup-form .btn {
+        background-color: #0f2940;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 10px;
+        cursor: pointer;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .popup-form .btn:hover {
+        background-color: #1a3b5b;
+    }
+</style>
+
+<body>
+    <button id="openPopup">Cadastrar</button>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <div class="popup-header">
+                <h2>Cadastre-se</h2>
+                <span class="close" id="closePopup">&times;</span>
+            </div>
+
+            <form id="cadastroForm" class="popup-form">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="obrigatório" required>
+
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="obrigatório" required>
+
+                <button type="submit" class="btn">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const openPopupEntrar = document.getElementById('openPopupEntrar');
+        const closePopupEntrar = document.getElementById('closePopupEntrar');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const form = document.getElementById('cadastroForm');
+
+        openPopup.addEventListener('click', () => {
+            popupOverlay.style.display = 'flex';
+        });
+
+        closePopup.addEventListener('click', () => {
+            popupOverlay.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.style.display = 'none';
+            }
+        });
+
+        // Redireciona após envio do formulário
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // evita recarregar a página
+            alert("Cadastro realizado com sucesso!");
+            window.location.href = "home_empresa.html"; // substitua pelo destino desejado
+        });
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+<!-- // variaveis modal (pop up) cliente 
+          const modalCliente = document.querySelector("#modalCliente");
+          const openPopupCli = document.querySelector("#openPopupCli");
+          const closepopupCli = document.querySelector("#closepopupCli");
+
+          // abrir pop up cliente
+          openPopupCli.addEventListener("click", (e) => {
+            modalCliente.showModal();
+          })
+
+          // fechar pop up cliente
+          closepopupCli.addEventListener("click", (e) => {
+            modalCliente.close();
+          }) -->

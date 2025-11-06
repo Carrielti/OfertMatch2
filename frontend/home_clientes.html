@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OfertMatch — Home Clientes</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="theme-light">
+  <!-- Header - topo -->
+  <header class="topbar">
+    <button class="icon-btn" id="btnMenu" aria-label="abrir menu">☰</button>
+    <div class="brand">
+      <span class="brand-icon">🛒</span>
+      <strong>Ofert</strong>Match
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn" id="btnTheme" title="Alterar tema">⚙️</button>
+      <button class="icon-btn" onclick="location.href='ofertas/index.html'" title="Minha lista / Carrinho">🛍️</button>
+    </div>
+  </header>
+
+  <!-- Busca -->
+  <section class="search-wrap">
+    <span class="search-ico">🔍</span>
+    <input class="search-input" placeholder="Pesquisar…" />
+  </section>
+
+  <!-- Logo -->
+  <section class="hero-logo">
+    <div class="logo">
+      <span class="logo-ofert">Ofert</span><span class="logo-match">Match</span>
+    </div>
+    <p class="pill">"O match perfeito entre você e o menor preço!"</p>
+  </section>
+
+  <!-- Botões principais -->
+  <main class="home-actions">
+    <a class="cta" href="ofertas/index.html">Montar minha lista</a>
+    <a class="cta" href="ofertas/index.html#ofertas">Ofertas do dia</a>
+  </main>
+
+  <!-- Gaveta lateral -->
+  <aside class="drawer right" id="drawerMenu" aria-hidden="true">
+    <div class="drawer-header">
+      <div class="brand big"><span class="brand-icon">🛒</span><strong>Ofert</strong>Match</div>
+      <button class="icon-btn close" data-close="drawerMenu">✕</button>
+    </div>
+    <nav class="drawer-body">
+      <a class="nav-item" href="ofertas/index.html">🧾 Perfil</a>
+      <button class="nav-item" id="toggleTheme">🌗 Alterar Tema</button>
+      <a class="nav-item" href="./">⏻ Sair</a>
+    </nav>
+  </aside>
+  <div class="backdrop" id="backdrop"></div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

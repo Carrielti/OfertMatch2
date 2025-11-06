@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OfertMatch — Ofertas do dia</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body class="theme-light">
+  <header class="topbar">
+    <button class="icon-btn" id="btnMenu">☰</button>
+    <div class="brand"><span class="brand-icon">🛒</span><strong>Ofert</strong>Match</div>
+    <div class="top-actions">
+      <button class="icon-btn" id="btnTheme">⚙️</button>
+      <button class="icon-btn" id="btnLista">🛒</button>
+    </div>
+  </header>
+
+  <section class="search-wrap">
+    <span class="search-ico">🔍</span>
+    <input class="search-input" placeholder="Pesquisar produtos…" />
+  </section>
+
+  <section class="title-row" id="ofertas">
+    <h1>Ofertas do dia</h1>
+    <span class="tag">As melhores, você só encontra aqui.</span>
+  </section>
+
+  <main class="grid" id="gridProdutos"></main>
+
+  <aside class="drawer right wide" id="drawerLista">
+    <div class="drawer-header">
+      <div class="title"><span>🛍️</span> Minha Lista</div>
+      <button class="icon-btn close" data-close="drawerLista">✕</button>
+    </div>
+    <div class="drawer-body" id="listaItens"></div>
+    <div class="drawer-footer">
+      <a class="btn-secondary" href="../rotas/index.html">Calcular Rota</a>
+      <button class="btn-outline" id="btnLimpar">Limpar Lista</button>
+    </div>
+  </aside>
+
+  <aside class="drawer right" id="drawerMenu">
+    <div class="drawer-header">
+      <div class="brand big"><span class="brand-icon">🛒</span><strong>Ofert</strong>Match</div>
+      <button class="icon-btn close" data-close="drawerMenu">✕</button>
+    </div>
+    <nav class="drawer-body">
+      <a class="nav-item" href="../home_clientes.html">🏠 Início</a>
+      <button class="nav-item" id="toggleTheme">🌗 Alterar Tema</button>
+      <a class="nav-item" href="./">⏻ Sair</a>
+    </nav>
+  </aside>
+
+  <div class="backdrop" id="backdrop"></div>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,684 @@
+  /* =======================
+   RESET BÁSICO
+   ======================= */
+
+/* Remove margens padrão de todos os elementos */
+* { margin: 0; /* Remove margens externas */ 
+  padding: 0; /* Remove espaçamento interno padrão */ 
+  box-sizing: border-box; /* Inclui padding e bordas dentro da largura total */ 
+  font-family: "Segoe UI", Arial, sans-serif; /* Define a fonte base do site */ 
+}
+
+/* Define aparência geral do corpo da página */
+body { background-color: #f5f5f5; /* Cor de fundo cinza claro */ 
+  color: #222; /* Cor de texto cinza escuro para legibilidade */ 
+}
+
+/* =======================
+   MENU LATERAL
+   ======================= */
+
+/* Define o contêiner principal do menu lateral */
+.menu-lateral { background-color: #092938; /* Fundo verde escuro */ 
+  color: white; /* Texto branco */ 
+  position: fixed; /* Fixa o menu na tela */ 
+  top: 0; /* Posiciona no topo da tela */ 
+  left: -250px; /* Começa fora da tela (invisível) */ 
+  width: 250px; /* Define a largura do menu lateral */ 
+  height: 100%; /* Ocupa toda a altura da janela */ 
+  padding: 20px; /* Espaçamento interno do conteúdo */ 
+  transition: left 0.3s ease; /* Animação suave ao abrir/fechar */ 
+  z-index: 10; /* Garante que o menu fique acima de outros elementos */ 
+}
+
+/* Define o logotipo dentro do menu lateral */
+.logo_menu { display: block; /* Torna o logo um bloco independente */ 
+  width: 100%; /* Faz o logo ocupar toda a largura disponível */ 
+  max-width: 210px; /* Define um tamanho máximo de 210px */ 
+  height: auto; /* Mantém a proporção da imagem */ 
+  margin: 4px auto 16px; /* Centraliza o logo e adiciona espaçamento abaixo */ 
+}
+
+/* Remove estilos padrão da lista dentro do menu */
+.menu-lateral ul { list-style: none; /* Remove marcadores (bolinhas) */ 
+  padding: 0; /* Remove padding padrão da lista */ 
+  margin: 0; /* Remove margens padrão */ 
+}
+
+/* Define espaçamento entre cada item da lista do menu */
+.menu-lateral li { margin: 6px 0; /* Adiciona espaço vertical entre os itens */ 
+}
+
+/* Define estilo dos links (botões) do menu lateral */
+.menu-lateral li a { display: flex; /* Alinha ícone e texto lado a lado */ 
+  align-items: center; /* Centraliza verticalmente o ícone e o texto */ 
+  gap: 10px; /* Espaçamento entre ícone e texto */ 
+  padding: 10px 12px; /* Espaçamento interno (vertical e horizontal) */ 
+  border-radius: 10px; /* Arredonda os cantos do botão */ 
+  color: #fff; /* Cor branca para o texto */ 
+  text-decoration: none; /* Remove sublinhado padrão */ 
+  font-weight: 600; /* Deixa o texto mais espesso (semibold) */ 
+  line-height: 1.2; /* Define altura da linha */ 
+  position: relative; /* Permite posicionar elementos filhos com posição absoluta (como a barra branca) */ 
+  transition: background 0.25s ease, color 0.25s ease; /* Transições suaves de cor e fundo */ 
+}
+
+/* Define o estilo dos ícones dentro do menu lateral */
+.icons_menu { width: 22px; /* Define largura fixa de 22px */ 
+  height: 22px; /* Define altura fixa de 22px */ 
+  flex: 0 0 22px; /* Impede que o ícone se estique */ 
+  object-fit: contain; /* Garante que a imagem mantenha proporção */ 
+  filter: none; /* Remove filtros aplicados por CSS ou navegador */ 
+}
+
+/* Altera aparência ao passar o mouse em cima de um link */
+.menu-lateral li a:hover { background-color: rgba(255, 255, 255, 0.08); /* Adiciona leve fundo branco translúcido */ 
+  color: #59e1a1; /* Muda a cor do texto para verde claro */ 
+}
+
+/* =======================
+   ITEM ATIVO (PÁGINA ATUAL)
+   ======================= */
+
+/* Estilo aplicado ao item do menu que está ativo (página atual) */
+.menu-lateral li a.active { background-color: rgba(255, 255, 255, 0.05); /* Fundo levemente branco */ 
+  color: #ffffff; /* Mantém texto branco */ 
+}
+
+/* Cria a barrinha branca à esquerda do item ativo */
+.menu-lateral li a.active::before { content: ""; /* Cria um pseudo-elemento vazio */ 
+  position: absolute; /* Posiciona a barrinha em relação ao link */ 
+  left: 0; /* Encosta na borda esquerda */ 
+  top: 0; /* Inicia no topo do item */ 
+  width: 4px; /* Define espessura da barrinha branca */ 
+  height: 100%; /* Faz a barra ocupar a altura total do item */ 
+  background-color: #ffffff; /* Define cor branca para a barra */ 
+  border-radius: 0 3px 3px 0; /* Arredonda os cantos direitos da barra */ 
+  transform: scaleY(0); /* Começa invisível (escala vertical 0) */ 
+  transform-origin: top; /* Define o topo como ponto de origem da animação */ 
+  transition: transform 0.3s ease; /* Suaviza o crescimento da barra */ 
+}
+
+/* Mostra a barrinha branca expandindo verticalmente */
+.menu-lateral li a.active::before { transform: scaleY(1); /* Faz a barra crescer de cima para baixo */ 
+}
+
+/* =======================
+   CABEÇALHO (HEADER)
+   ======================= */
+
+/* Define a barra superior (topo do site) */
+header { background-color: #ffffff; /* Cor de fundo branca */ 
+  display: flex; /* Organiza os elementos em linha */ 
+  justify-content: space-between; /* Espaça os elementos nas extremidades */ 
+  align-items: center; /* Centraliza verticalmente o conteúdo */ 
+  padding: 15px 20px; /* Espaçamento interno do cabeçalho */ 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Adiciona sombra sutil abaixo */ 
+  position: sticky; /* Faz o header "grudar" no topo ao rolar a página */ 
+  top: 0; /* Fixa no topo */ 
+}
+
+/* Define aparência dos botões no cabeçalho */
+header button { background: none; /* Remove cor de fundo padrão */ 
+  border: none; /* Remove bordas padrão */ 
+  font-size: 22px; /* Define tamanho grande para os ícones (☰ e ⚙) */ 
+  cursor: pointer; /* Mostra cursor de mãozinha ao passar o mouse */ 
+}
+
+/* Define o tamanho do logotipo no cabeçalho */
+.logo { height: 40px; /* Altura fixa do logotipo */ 
+}
+
+/* =======================
+   SEÇÃO DE BOAS-VINDAS
+   ======================= */
+
+/* Define o container da mensagem de boas-vindas */
+.boas-vindas { text-align: center; /* Centraliza o texto */ 
+  margin: 40px 0 20px; /* Espaçamento acima e abaixo da seção */ 
+}
+
+/* Estiliza o título principal da seção de boas-vindas */
+.boas-vindas h1 { color: #0d3b2e; /* Define o tom de verde escuro da marca */ 
+  margin-bottom: 10px; /* Adiciona espaçamento abaixo do título */ 
+}
+
+.boas-vindas p { 
+   /* Define o tom de verde escuro da marca */ 
+  margin-bottom: 10px; /* Adiciona espaçamento abaixo do título */ 
+}
+
+/* =======================
+   SEÇÃO DE AÇÕES (CARDS)
+   ======================= */
+
+/* Container dos cards principais (botões de ação) */
+.acoes { display: flex; /* Usa layout flexível */ 
+  justify-content: center; /* Centraliza os cards horizontalmente */ 
+  flex-wrap: wrap; /* Permite que quebrem linha em telas menores */ 
+  gap: 30px; /* Espaço entre cards */ 
+  padding: 20px; /* Espaçamento interno da seção */ 
+}
+
+/* Define aparência básica dos cards */
+.card { background-color: #0d3b2e; /* Fundo verde escuro */ 
+  width: 180px; /* Largura fixa */ 
+  height: 180px; /* Altura fixa (quadrado) */ 
+  border-radius: 15px; /* Cantos arredondados */ 
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */ 
+  display: flex; /* Usa layout flexível para alinhar conteúdo */ 
+  flex-direction: column; /* Ícone em cima, texto embaixo */ 
+  justify-content: center; /* Centraliza verticalmente */ 
+  align-items: center; /* Centraliza horizontalmente */ 
+  cursor: pointer; /* Mostra mãozinha ao passar o mouse */ 
+  transition: transform 0.25s; /* Suaviza animação de escala */ 
+}
+
+/* Efeito visual quando o mouse passa sobre o card */
+.card:hover { transform: scale(1.05); /* Aumenta levemente o tamanho */ 
+}
+
+/* Define tamanho e espaçamento do ícone dentro do card */
+.card img { width: 120px; /* Largura da imagem */ 
+  height: 120px; /* Altura da imagem */ 
+  margin-bottom: 10px; /* Espaço entre o ícone e o texto */ 
+  background-color: #0d3b2e; /* Fundo para manter tom consistente */ 
+}
+
+/* Define o texto dentro do card */
+.card p { color: white; /* Texto branco */ 
+  font-weight: bold; /* Negrito para destaque */ 
+}
+
+/* =======================
+   OVERLAY (FUNDO ESCURO DO MENU)
+   ======================= */
+
+/* Define o fundo escuro que aparece ao abrir o menu lateral */
+.overlay { position: fixed; /* Fixa na tela inteira */ 
+  top: 0; /* Começa no topo */ 
+  left: 0; /* Começa à esquerda */ 
+  width: 100%; /* Ocupa toda a largura da tela */ 
+  height: 100%; /* Ocupa toda a altura da tela */ 
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo preto translúcido */ 
+  display: none; /* Escondido por padrão */ 
+  z-index: 5; /* Fica abaixo do menu (menu tem z-index 10) */ 
+}
+
+/* =======================
+   MODAIS (JANELAS FLUTUANTES)
+   ======================= */
+
+/* Define a estrutura base dos modais */
+.modal { display: none; /* Invisível inicialmente */ 
+  position: fixed; /* Fixa na tela */ 
+  top: 0; /* No topo */ 
+  left: 0; /* À esquerda */ 
+  width: 100%; /* Ocupa largura total */ 
+  height: 100%; /* Ocupa altura total */ 
+  background: rgba(0, 0, 0, 0.6); /* Fundo escurecido */ 
+  justify-content: center; /* Centraliza horizontalmente */ 
+  align-items: center; /* Centraliza verticalmente */ 
+  z-index: 20; /* Fica acima do overlay */ 
+  opacity: 0; /* Começa invisível */ 
+  transform: scale(0.95); /* Levemente menor (efeito de entrada) */ 
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Animações suaves */ 
+}
+
+/* Mostra o modal com transição */
+.modal.show { opacity: 1; /* Fica visível */ 
+  transform: scale(1); /* Retorna ao tamanho normal */ 
+}
+
+/* Define o conteúdo interno da janela modal */
+.modal-content { background: #0d3b2e; /* Fundo verde escuro */ 
+  color: #fff; /* Texto branco */ 
+  width: 90%; /* Ocupa 90% da tela em dispositivos pequenos */ 
+  max-width: 400px; /* Limita largura máxima */ 
+  padding: 20px; /* Espaçamento interno */ 
+  border-radius: 10px; /* Cantos arredondados */ 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para destacar */ 
+}
+
+/* Cabeçalho do modal (título e botão X) */
+.modal-content h2 { display: flex; /* Alinha elementos em linha */ 
+  justify-content: space-between; /* Espaça o título e o botão */ 
+  align-items: center; /* Centraliza verticalmente */ 
+  font-size: 1.2rem; /* Tamanho do texto */ 
+  margin-bottom: 10px; /* Espaço abaixo do título */ 
+}
+
+/* Campos de entrada dentro do modal */
+.modal-content input { width: 100%; /* Ocupa toda a largura */ 
+  padding: 8px; /* Espaçamento interno */ 
+  margin: 6px 0; /* Espaço entre campos */ 
+  border: none; /* Remove bordas */ 
+  border-radius: 6px; /* Arredonda cantos */ 
+}
+
+/* Área que agrupa os botões Cancelar e Salvar */
+.botoes { display: flex; /* Coloca botões lado a lado */ 
+  justify-content: space-between; /* Espaça igualmente */ 
+  margin-top: 10px; /* Espaço acima dos botões */ 
+}
+
+/* Estilo base dos botões dentro do modal */
+.botoes button { width: 48%; /* Cada botão ocupa metade do espaço */ 
+  padding: 8px; /* Altura dos botões */ 
+  border: none; /* Remove bordas */ 
+  border-radius: 6px; /* Arredonda cantos */ 
+  font-weight: bold; /* Texto em negrito */ 
+  cursor: pointer; /* Mãozinha de clique */ 
+}
+
+/* Botão de cancelar */
+.cancelar { background: #ccc; /* Fundo cinza */ 
+  color: #000; /* Texto preto */ 
+}
+
+/* Botão de salvar */
+.salvar { background: #59e1a1; /* Fundo verde claro */ 
+  color: #0d3b2e; /* Texto verde escuro */ 
+}
+
+/* Botão “X” de fechar modal */
+.fechar { cursor: pointer; /* Mostra cursor de clique */ 
+  color: #59e1a1; /* Cor verde clara */ 
+  font-weight: bold; /* Deixa o X em negrito */ 
+}
+
+/* =======================
+   TOAST (MENSAGENS TEMPORÁRIAS)
+   ======================= */
+
+/* Define o estilo das mensagens de alerta */
+.toast { position: fixed; /* Fixa na tela */ 
+  bottom: 25px; /* Distância da base da tela */ 
+  right: 25px; /* Distância da lateral direita */ 
+  padding: 12px 20px; /* Espaçamento interno */ 
+  border-radius: 8px; /* Cantos arredondados */ 
+  color: #fff; /* Texto branco */ 
+  font-weight: 600; /* Texto em negrito */ 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra para destaque */ 
+  opacity: 0; /* Invisível por padrão */ 
+  transform: translateY(20px); /* Levemente abaixo (animação de entrada) */ 
+  transition: opacity 0.4s ease, transform 0.4s ease; /* Animação suave */ 
+  z-index: 50; /* Fica acima de tudo */ 
+}
+
+/* Mostra o toast (aparece na tela) */
+.toast.show { opacity: 1; /* Torna visível */ 
+  transform: translateY(0); /* Sobe suavemente */ 
+}
+
+/* Estilo para mensagem de sucesso */
+.toast.sucesso { background: #0d3b2e; /* Fundo verde escuro */ 
+}
+
+/* Estilo para mensagem de erro */
+.toast.erro { background: #c0392b; /* Fundo vermelho */ 
+}
+
+/* Estilo para mensagem de aviso */
+.toast.aviso { background: #f1c40f; /* Fundo amarelo */ 
+  color: #222; /* Texto preto para contraste */ 
+}
+
+/* =======================
+   LISTAS / TABELAS
+   ======================= */
+
+/* Define container principal das listas/tabelas */
+.listas { max-width: 1100px; /* Largura máxima */ 
+  margin: 30px auto; /* Centraliza com margens automáticas */ 
+  padding: 0 16px; /* Espaçamento lateral */ 
+}
+
+/* Título das seções de listas */
+.listas h2 { color: #0d3b2e; /* Verde escuro */ 
+  margin-bottom: 12px; /* Espaçamento abaixo do título */ 
+}
+
+/* Área dos botões de controle das tabelas */
+.lista-controles { display: flex; /* Coloca botões em linha */ 
+  gap: 10px; /* Espaçamento entre eles */ 
+  margin-bottom: 12px; /* Espaço abaixo dos botões */ 
+}
+
+/* Estilo dos botões de controle */
+.lista-controles button { border: none; /* Remove bordas */ 
+  padding: 8px 12px; /* Espaçamento interno */ 
+  border-radius: 6px; /* Cantos arredondados */ 
+  cursor: pointer; /* Mostra cursor de clique */ 
+  font-weight: 600; /* Texto negrito */ 
+  background: #0d3b2e; /* Fundo verde escuro */ 
+  color: #fff; /* Texto branco */ 
+}
+
+/* Define a caixa branca que contém as tabelas */
+.box-lista { overflow: auto; /* Permite rolagem se ultrapassar área */ 
+  border-radius: 10px; /* Cantos arredondados */ 
+  background: #fff; /* Fundo branco */ 
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07); /* Sombra leve */ 
+}
+
+/* Define estrutura geral das tabelas */
+.om-table { width: 100%; /* Largura total */ 
+  border-collapse: collapse; /* Remove espaços entre células */ 
+}
+
+/* Estilo do cabeçalho das tabelas */
+.om-table thead th { position: sticky; /* Cabeçalho fixo ao rolar */ 
+  top: 0; /* Fixa no topo */ 
+  background: #e9f7f1; /* Fundo verde-claro */ 
+  color: #0d3b2e; /* Texto verde escuro */ 
+  text-align: left; /* Alinha texto à esquerda */ 
+  padding: 10px; /* Espaçamento interno */ 
+}
+
+/* Define aparência das células da tabela */
+.om-table tbody td { padding: 10px; /* Espaçamento interno das células */ 
+  border-top: 1px solid #eee; /* Linha separando as linhas da tabela */ 
+}
+
+/* Efeito de destaque ao passar o mouse sobre uma linha da tabela */
+.om-table tbody tr:hover { background: #f8fffb; /* Fundo esverdeado suave */ 
+}
+
+/* ===== TOP SEARCH (barra de busca abaixo do header) ===== */
+.top-search{
+  max-width: 980px;          /* largura semelhante ao mockup */
+  margin: 16px auto 0;       /* centraliza e dá respiro no topo */
+  padding: 0 16px;           /* respiro lateral em telas menores */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.top-search .search-ico{ font-size: 18px; opacity:.7; }
+.top-search input{
+  flex: 1;
+  height: 38px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 0 12px;
+  background: #eef0f3;       /* tom claro como no mockup */
+  outline: none;
+}
+
+/* ===== HERO (boas-vindas) ===== */
+.hero{
+  max-width: 980px;          /* mesma largura do bloco de busca */
+  margin: 18px auto 22px;    /* espaços superior e inferior */
+  padding: 0 16px;           /* respiro lateral mobile */
+  display: grid;
+  grid-template-columns: auto 1fr; /* logo | cartão */
+  align-items: center;
+  column-gap: 16px;
+}
+
+/* mini logo à esquerda */
+.hero-brand{
+  width: 130px;               /* ajuste conforme a imagem */
+  height: auto;
+  object-fit: contain;
+}
+
+/* cartão escuro com a mensagem */
+.hero-card{
+  background: #0b2f3a;       /* verde-azulado escuro do mockup */
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+/* títulos e parágrafos com hierarquia */
+.hero-card h1{
+  font-size: 20px;           /* parecido com o mockup à esquerda */
+  font-weight: 800;
+  margin-bottom: 6px;
+  line-height: 1.25;
+}
+.hero-card p{
+  font-size: 16px;
+  opacity: .9;
+}
+
+/* linha divisória fina abaixo do hero (opcional, como no mockup) */
+.hero + .divider{
+  max-width: 100%;
+  border-top: 2px solid #dfe6ea;
+  margin: 16px 0;
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 680px){
+  .hero{
+    grid-template-columns: 1fr;   /* empilha logo acima do cartão */
+    row-gap: 12px;
+  }
+  .hero-brand{
+    width: 64px;
+    margin-left: 4px;
+  }
+  .hero-card h1{ font-size: 18px; }
+  .hero-card p{ font-size: 14px; }
+  .top-search{ padding: 0 12px; }
+}
+
+/* =========================
+   TEMA ESCURO (camada)
+   ========================= */
+/* Botão de tema (estilo simples, você pode melhorar no próprio style.css) */
+.btn-theme {
+  background: none;
+  border: 0;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.btn-theme:hover { background: rgba(0,0,0,.06); }
+body.theme-dark .btn-theme:hover { background: rgba(255,255,255,.06); }
+
+/* Fundos e textos gerais */
+body.theme-dark {
+  background-color: #0e1419;   /* fundo global */
+  color: #e6edf3;              /* texto global */
+}
+body.theme-dark header {
+  background-color: #0b1015;
+  border-bottom-color: #1f2a33;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+body.theme-dark .logo { filter: brightness(0.95) contrast(1.02); }
+
+/* Menu lateral */
+body.theme-dark .menu-lateral {
+  background-color: #0b2f3a; /* tom próximo ao seu verde-azulado escuro */
+  color: #f0f6fc;
+}
+body.theme-dark .menu-lateral li a {
+  color: #f0f6fc;
+}
+body.theme-dark .menu-lateral li a:hover {
+  background: rgba(255,255,255,.08);
+  color: #6ee7b7; /* verde claro */
+}
+body.theme-dark .menu-lateral li a.active {
+  background: rgba(255,255,255,.06);
+  color: #fff;
+}
+body.theme-dark .menu-lateral li a.active::before {
+  background: #fff;
+}
+
+/* Hero / cartões / caixas */
+body.theme-dark .hero-card,
+body.theme-dark .card,
+body.theme-dark .box-lista {
+  background: #0b2f3a;
+  color: #e6edf3;
+  box-shadow: 0 4px 14px rgba(0,0,0,.45);
+}
+body.theme-dark .divider { border-top-color: #1f2a33; }
+
+/* Inputs e botões dos modais */
+body.theme-dark .modal-content {
+  background: #0b2f3a;
+  color: #e6edf3;
+}
+body.theme-dark .modal-content input,
+body.theme-dark .modal-content select,
+body.theme-dark .top-search input {
+  background: #0f1720;
+  color: #e6edf3;
+  border: 1px solid #243242;
+}
+body.theme-dark .botoes button,
+body.theme-dark .lista-controles button {
+  background: #124f46;   /* botão preenchido */
+  color: #e6edf3;
+}
+body.theme-dark .cancelar {
+  background: #2b3340;   /* botão fantasma */
+  color: #e6edf3;
+}
+
+/* Tabelas */
+body.theme-dark .om-table thead th {
+  background: #0f1b23;
+  color: #e6edf3;
+}
+body.theme-dark .om-table tbody tr:hover {
+  background: #0f1b23;
+}
+body.theme-dark .om-table tbody td {
+  border-top-color: #1b2833;
+}
+
+/* Toast */
+body.theme-dark .toast.sucesso { background: #124f46; }
+body.theme-dark .toast.erro    { background: #8b2a21; }
+body.theme-dark .toast.aviso   { background: #b08a00; color: #0e1419; }
+
+/* ===== Painel lateral direito (estilo do mockup) ===== */
+.menu-opcoes{
+  position: fixed;
+  top: 0; right: -320px;
+  width: 320px; height: 100vh;
+  background: #082637;                 /* azul bem escuro */
+  box-shadow: -6px 0 24px rgba(0,0,0,.28);
+  
+  z-index: 1200;
+  transition: right .28s ease;
+  display: flex; flex-direction: column;
+}
+.menu-opcoes.open{ right: 0; }
+
+.menu-opcoes .op-header{
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  display: grid; place-items: center;
+}
+.menu-opcoes .op-logo{
+  width: 68%; max-width: 220px; height: auto; object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.25));
+}
+
+.menu-opcoes .op-list{
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 14px;
+}
+
+.op-item{
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+  padding: 12px 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px;
+  color: #eaf3f8;
+  cursor: pointer;
+  transition: background .2s ease, transform .08s ease;
+}
+.op-item:hover{ background: rgba(255,255,255,.08); }
+.op-item:active{ transform: scale(.98); }
+
+.op-ico{
+  flex: 0 0 36px; height: 36px; width: 36px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(100% 100% at 30% 20%, #1bd39d 0%, #0aa874 100%);
+  color: #05201a; font-size: 18px;
+}
+#opAlterarTema .op-ico{
+  background: radial-gradient(100% 100% at 30% 20%, #26a7ff 0%, #1479d6 100%);
+  color: #031522;
+}
+#opSair .op-ico{
+  background: radial-gradient(100% 100% at 30% 20%, #ffd66b 0%, #f7b500 100%);
+  color: #241a00;
+}
+
+.op-txt{ font-weight: 600; }
+
+/* Dark mode do painel acompanha o tema geral */
+.theme-dark .menu-opcoes{
+  background: #061424;
+  border-left-color: #1e90ff;
+}
+
+/* (Se quiser escurecer o overlay quando o painel abre) */
+.menu-opcoes.open ~ .overlay{
+  display: block !important;
+  background-color: rgba(0,0,0,.55);
+}
+
+:root{
+  --bg:#f5f5f5; --ink:#222; /* etc */
+}
+.theme-dark{
+  --bg:#0b1220; --ink:#eaf3f8; /* mesmas variáveis em dark */
+}
+body{ background:var(--bg); color:var(--ink); }
+
+/* ===== MENU CONFIGURAÇÕES ===== */
+.menu-config {
+  position: fixed;
+  top: 70px;
+  right: -240px;
+  width: 220px;
+  background-color: #0e3f27;
+  color: #fff;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -3px 0 10px rgba(0,0,0,0.3);
+  padding: 20px 10px;
+  transition: right 0.3s ease-in-out;
+  z-index: 999;
+}
+.menu-config.show {
+  right: 0;
+}
+.menu-config ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+.menu-config li {
+  padding: 10px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  transition: background 0.3s;
+}
+.menu-config li:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+.logo_config {
+  width: 80%;
+  display: block;
+  margin: 0 auto 10px;
+}

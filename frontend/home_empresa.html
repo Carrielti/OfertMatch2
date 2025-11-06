@@ -1,0 +1,311 @@
+<!DOCTYPE html> <!-- Diz ao navegador que é HTML5 -->
+<html lang="pt-BR"> <!-- Idioma do documento (ajuda leitor de tela/SEO) -->
+<head>
+  <meta charset="UTF-8" /> <!-- Codificação correta de acentos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Responsivo -->
+  <title>OfertMatch Empresas</title>
+  <link rel="stylesheet" href="home_empresa.css" /> <!--Conecta o CSS -->
+
+  <!-- CSS mínimo para o painel de opções (mover para home_empresa.css depois) -->
+  <style>
+    .menu-opcoes{
+      position: fixed; top:0; right:-280px; width:280px; height:100%;
+      background:#0d2b3e; color:#fff; padding:18px; z-index:12;
+      transition:right .3s ease; box-shadow:-4px 0 16px rgba(0,0,0,.15);
+    }
+    .menu-opcoes.open{ right:0; }
+    .menu-opcoes h3{ margin:6px 0 12px; font-size:1.05rem; }
+    .menu-opcoes .sep{ height:1px; background:rgba(255,255,255,.18); margin:10px 0; }
+    .menu-opcoes a,
+    .menu-opcoes button{
+      display:flex; align-items:center; gap:10px;
+      width:100%; padding:10px 12px; border-radius:10px;
+      background:transparent; color:#fff; border:0; text-align:left; cursor:pointer;
+    }
+    .menu-opcoes a:hover, .menu-opcoes button:hover{
+      background:rgba(255,255,255,.08);
+    }
+    /* botão tema (opcional, ajuste no seu CSS principal se quiser) */
+    .btn-theme{
+      border:0; background:transparent; font-size:20px; cursor:pointer;
+    }
+    /* dark mode básico para o painel de opções (se já tiver tokens no CSS principal, pode remover) */
+    .theme-dark .menu-opcoes{ background:#0b1220; }
+  </style>
+</head>
+
+<!-- Painel lateral direito (Opções) -->
+<aside class="menu-opcoes" id="menuOpcoes" aria-label="Opções" aria-hidden="true">
+  <div class="op-header">
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="op-logo" />
+  </div>
+
+  <nav class="op-list">
+    <button type="button" class="op-item" id="opPerfil">
+      <span class="op-ico">👤</span>
+      <span class="op-txt">Perfil</span>
+    </button>
+
+    <button type="button" class="op-item" id="opAlterarTema">
+      <span class="op-ico">🌓</span>
+      <span class="op-txt">Alterar Tema</span>
+    </button>
+
+    <button type="button" class="op-item" id="opSair">
+      <span class="op-ico">🚪</span>
+      <span class="op-txt">Sair</span>
+    </button>
+  </nav>
+</aside>
+
+
+<body data-page="home-empresa">
+  <!-- ====== MENU LATERAL ESQUERDO (drawer) ====== -->
+  <nav class="menu-lateral" id="menuLateral" role="navigation" aria-label="Menu lateral">
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="logo_menu" />
+    <ul>
+      <li>
+        <a href="home_empresa.html" class="active">
+          <img src="img/icon_home.png" alt="" class="icons_menu">
+          <span>Início</span>
+        </a>
+      </li>
+      <li>
+        <a href="lista_ofertas.html">
+          <img src="img/icon_promocao.png" alt="" class="icons_menu">
+          <span>Lista de ofertas</span>
+        </a>
+      </li>
+      <li>
+        <a href="lista_produtos.html">
+          <img src="img/icon_lista_produtos.png" alt="" class="icons_menu">
+          <span>Lista de Produtos</span>
+        </a>
+      </li>
+      <li>
+        <a href="endereco.html">
+          <img src="img/icon_localizacao.png" alt="" class="icons_menu">
+          <span>Endereço</span>
+        </a>
+      </li>
+      <li>
+        <a href="sobre.html">
+          <img src="img/icon_sobre.png" alt="" class="icons_menu">
+          <span>Sobre</span>
+        </a>
+      </li>
+      <li>
+        <a href="contato.html">
+          <img src="img/icon_contato.png" alt="" class="icons_menu">
+          <span>Contato</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- ====== OVERLAY (fundo escuro) ====== -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ====== CABEÇALHO ====== -->
+  <header>
+    <!-- abre/fecha o menu esquerdo -->
+    <button id="btnMenu" aria-controls="menuLateral" aria-expanded="false" aria-label="Abrir menu lateral">☰</button>
+
+    <!-- Logo -->
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="logo" />
+
+    <!-- Ações à direita: tema + opções -->
+    <div class="header-actions" style="display:flex; align-items:center; gap:10px;">
+      <!-- Botão tema: Script já troca ícone e persiste no localStorage -->
+      <button id="btnTheme" class="btn-theme" aria-pressed="false" aria-label="Ativar tema escuro" title="Tema escuro">🌙</button>
+
+      <!-- Botão de configurações: abre o painel direito -->
+      <button id="btnConfig" aria-label="Abrir opções">⚙</button>
+    </div>
+  </header>
+
+  <!-- ====== MENU LATERAL DIREITO (opções) ====== -->
+  <aside class="menu-opcoes" id="menuOpcoes" aria-label="Opções da conta" aria-hidden="true">
+    <h3>Opções</h3>
+    <div class="sep"></div>
+    <button type="button" id="opPerfil">👤 Perfil</button>
+    <button type="button" id="opPreferencias">⚙ Preferências</button>
+    <a href="lista_produtos.html">📦 Meus Produtos</a>
+    <a href="lista_ofertas.html">🏷️ Minhas Ofertas</a>
+    <div class="sep"></div>
+    <button type="button" id="opSair">🚪 Sair</button>
+  </aside>
+
+  <!-- Barra de busca (opcional) -->
+  <div class="top-search" role="search">
+    <span class="search-ico">🔎</span>
+    <input type="search" placeholder="Buscar produtos, empresas ou ofertas…" aria-label="Buscar" />
+  </div>
+
+  <!-- ====== CONTEÚDO PRINCIPAL ====== -->
+  <main>
+    <!-- HERO (boas-vindas estilo mockup) -->
+    <section class="hero">
+      <img class="hero-brand" src="img/Logo_Menor_Sem_Fundo.png" alt="OfertMatch" />
+      <div class="hero-card" role="region" aria-label="Boas-vindas">
+        <h1>Bem-vindo(a) ao OfertMatch Empresas!</h1>
+        <p>Comece a gerenciar seus produtos agora mesmo.</p>
+      </div>
+    </section>
+
+    <!-- Cards de ação -->
+    <section class="acoes" aria-label="Ações rápidas">
+      <button class="card" type="button" data-open="modalEmpresa" aria-haspopup="dialog" aria-controls="modalEmpresa">
+        <img src="img/Cadastro_Empresas.png" alt="Empresa" aria-hidden="true" />
+        <p>Cadastrar Empresa</p>
+      </button>
+
+      <button class="card" type="button" data-open="modalProduto" aria-haspopup="dialog" aria-controls="modalProduto">
+        <img src="img/Cadastro_Produtos.png" alt="" aria-hidden="true" />
+        <p>Cadastrar Produto</p>
+      </button>
+
+      <button class="card" type="button" data-open="modalOferta" aria-haspopup="dialog" aria-controls="modalOferta">
+        <img src="img/Cadastro_Ofertas.png" alt="" aria-hidden="true" />
+        <p>Cadastrar Ofertas</p>
+      </button>
+    </section>
+
+    <!-- ===== LISTAS (visualização rápida) ===== -->
+    <section class="listas" aria-label="Registros salvos">
+      <h2>Registros</h2>
+
+      <div class="lista-controles">
+        <button id="btnVerEmpresas" type="button">Ver Empresas</button>
+        <button id="btnVerProdutos"  type="button">Ver Produtos</button>
+        <button id="btnVerOfertas"   type="button">Ver Ofertas</button>
+      </div>
+
+      <!-- Caixas de listas (use os IDs no JS para alternar) -->
+      <div id="boxEmpresas" class="box-lista" hidden>
+        <table class="om-table">
+          <thead><tr><th>Razão Social</th><th>CNPJ</th><th>Endereço</th><th>E-mail</th><th>Responsável</th></tr></thead>
+          <tbody id="tbodyEmpresas"></tbody>
+        </table>
+      </div>
+
+      <div id="boxProdutos" class="box-lista" hidden>
+        <table class="om-table">
+          <thead><tr><th>Nome</th><th>Código</th><th>Estoque</th><th>Categoria</th><th>Marca</th><th>Valor</th><th>Validade</th></tr></thead>
+          <tbody id="tbodyProdutos"></tbody>
+        </table>
+      </div>
+
+      <div id="boxOfertas" class="box-lista" hidden>
+        <table class="om-table">
+          <thead><tr><th>Produto</th><th>Marca</th><th>Código</th><th>Estoque</th><th>Categoria</th><th>Valor</th><th>Validade</th><th>Início</th><th>Fim</th></tr></thead>
+          <tbody id="tbodyOfertas"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== MODAL: EMPRESA ===== -->
+  <div class="modal" id="modalEmpresa" role="dialog" aria-modal="true" aria-labelledby="tituloModalEmpresa" aria-hidden="true">
+    <div class="modal-content">
+      <h2 id="tituloModalEmpresa">
+        Cadastro de empresas
+        <button class="fechar" data-modal="modalEmpresa" aria-label="Fechar modal">X</button>
+      </h2>
+      <form id="formEmpresa" class="form">
+        <input data-field="razao_social" name="razao_social" placeholder="Razão social" required>
+        <input data-field="cnpj"          name="cnpj"          placeholder="CNPJ" maxlength="18" required>
+        <input data-field="endereco"      name="endereco"      placeholder="Endereço" required>
+        <input data-field="email"         name="email"         type="email" placeholder="E-mail empresarial" required>
+        <input data-field="responsavel"   name="responsavel"   placeholder="Responsável" required>
+        <div class="botoes">
+          <button type="button" class="cancelar" data-modal="modalEmpresa">Cancelar</button>
+          <button type="submit" class="salvar">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: PRODUTO ===== -->
+  <div class="modal" id="modalProduto" role="dialog" aria-modal="true" aria-labelledby="tituloModalProduto" aria-hidden="true">
+    <div class="modal-content">
+      <h2 id="tituloModalProduto">
+        Cadastro de produtos
+        <button class="fechar" data-modal="modalProduto" aria-label="Fechar modal">X</button>
+      </h2>
+      <form id="formProduto" class="form">
+        <input data-field="nome"      name="nome"      placeholder="Produto" required>
+        <input data-field="codigo"    name="codigo"    placeholder="Código de produto" required>
+        <input data-field="estoque"   name="estoque"   type="number" min="0" step="1" placeholder="Estoque" required>
+        <input data-field="categoria" name="categoria" placeholder="Categoria" required>
+        <input data-field="marca"     name="marca"     placeholder="Marca" required>
+        <input data-field="valor"     name="valor"     type="number" min="0" step="0.01" placeholder="Valor (R$)" required>
+        <input data-field="validade"  name="validade"  type="date" placeholder="Validade (opcional)">
+        <div class="botoes">
+          <button type="button" class="cancelar" data-modal="modalProduto">Cancelar</button>
+          <button type="submit" class="salvar">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== MODAL: OFERTA ===== -->
+  <div class="modal" id="modalOferta" role="dialog" aria-modal="true" aria-labelledby="tituloModalOferta" aria-hidden="true">
+    <div class="modal-content">
+      <h2 id="tituloModalOferta">
+        Ofertas do dia
+        <button class="fechar" data-modal="modalOferta" aria-label="Fechar modal">X</button>
+      </h2>
+      <form id="formOferta" class="form">
+        <input data-field="produto"     name="produto"     placeholder="Produto" required>
+        <input data-field="marca"       name="marca"       placeholder="Marca" required>
+        <input data-field="codigo"      name="codigo"      placeholder="Código do produto" required>
+        <input data-field="estoque"     name="estoque"     type="number" min="0" step="1" placeholder="Estoque" required>
+        <input data-field="categoria"   name="categoria"   placeholder="Categoria" required>
+        <input data-field="valor"       name="valor"       type="number" min="0" step="0.01" placeholder="Valor (R$)" required>
+        <input data-field="validade"    name="validade"    type="date" placeholder="Validade (opcional)">
+        <input data-field="data_inicio" name="data_inicio" type="date" placeholder="Início da oferta">
+        <input data-field="data_fim"    name="data_fim"    type="date" placeholder="Fim da oferta">
+        <div class="botoes">
+          <button type="button" class="cancelar" data-modal="modalOferta">Cancelar</button>
+          <button type="submit" class="salvar">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+  <!-- Snippet JS para o painel direito: abre com ⚙ e fecha no overlay/ESC -->
+  <script>
+    (function(){
+      const btnConfig  = document.getElementById("btnConfig");
+      const menuOpcoes = document.getElementById("menuOpcoes");
+      const overlay    = document.getElementById("overlay");
+
+      function abrirOpcoes(){
+        if (!menuOpcoes) return;
+        menuOpcoes.classList.add("open");
+        menuOpcoes.setAttribute("aria-hidden","false");
+        overlay.style.display = "block";
+      }
+      function fecharOpcoes(){
+        if (!menuOpcoes) return;
+        menuOpcoes.classList.remove("open");
+        menuOpcoes.setAttribute("aria-hidden","true");
+        overlay.style.display = "none";
+      }
+
+      btnConfig?.addEventListener("click", abrirOpcoes);
+      overlay?.addEventListener("click", fecharOpcoes);
+      document.addEventListener("keydown", (e)=>{
+        if (e.key === "Escape" && menuOpcoes?.classList.contains("open")) fecharOpcoes();
+      });
+    })();
+  </script>
+</body>
+</html>

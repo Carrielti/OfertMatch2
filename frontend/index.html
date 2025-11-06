@@ -1,0 +1,1076 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OfertMatch</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<!-- Pop up cadastro de clientes = cadastro1  -->
+<!-- Pop up cadastro de empresas = cadastro2 -->
+
+
+
+<style>
+  /* Cadastro empresa = emps
+   Cadastro clientes = cli */
+
+
+  :root {
+    --brand: #166f5b;
+    --brand-600: #115748;
+    --brand-700: #0c4136;
+    --ink: #0b1220;
+    --muted: #5b6776;
+    --bg: #f7f9fb;
+    --card: #ffffff;
+    --ring: rgba(22, 111, 91, .4);
+    --radius: 16px;
+    --shadow: 0 10px 30px rgba(15, 23, 42, .08);
+  }
+
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box
+  }
+
+  html,
+  body {
+    height: 100%
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+
+  img {
+    max-width: 100%;
+    display: block
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none
+  }
+
+  .container {
+    width: min(1100px, 92%);
+    margin-inline: auto
+  }
+
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: #fff;
+    border-bottom: 1px solid #e9eef3;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 0
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--brand)
+  }
+
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--brand);
+    color: #fff
+  }
+
+  .hero {
+    padding: 46px 0 24px
+  }
+
+  .hero h1 {
+    font-size: clamp(26px, 3.2vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 12px;
+    font-weight: 800;
+  }
+
+  .hero h1 .accent {
+    color: var(--brand)
+  }
+
+  .hero p {
+    color: var(--muted);
+    max-width: 860px;
+    margin: 8px 0 0
+  }
+
+  .how {
+    padding: 16px 0 26px;
+    width: 100%;
+  }
+
+  .how h2 {
+    font-size: clamp(18px, 2.6vw, 24px);
+    margin: 0 0 18px;
+    text-align: center
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    align-items: stretch
+  }
+
+  .step {
+    background: transparent;
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center
+  }
+
+  .step .icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+    display: grid;
+    place-items: center;
+    margin: 0 auto 12px
+  }
+
+  .step h3 {
+    margin: 6px 0 4px;
+    font-size: 18px
+  }
+
+  .step p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px
+  }
+
+
+  .cta {
+    padding: 22px 0 60px
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 26px 22px
+  }
+
+  .card h4 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    line-height: 1.35;
+    text-align: center
+  }
+
+  .card p.meta {
+    margin: 10px 0 16px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 14px
+  }
+
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap
+  }
+
+  .btn {
+    appearance: none;
+    border: 0;
+    cursor: pointer;
+    background: var(--brand-600);
+    color: #fff;
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 999px;
+    box-shadow: 0 6px 14px var(--ring);
+    transition: .2s
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px var(--ring);
+    background: var(--brand-700)
+  }
+
+  .link {
+    font-weight: 600;
+    color: var(--brand-600)
+  }
+
+
+  footer {
+    padding: 36px 0 60px;
+    color: var(--muted);
+    text-align: center;
+    font-size: 14px
+  }
+
+
+  @media (max-width: 900px) {
+    .steps {
+      grid-template-columns: 1fr;
+      gap: 10px
+    }
+
+    .cards {
+      grid-template-columns: 1fr
+    }
+
+    .hero {
+      padding-top: 34px
+    }
+  }
+
+  img {
+    height: 50%;
+    width: 55%;
+    border-radius: 20%;
+  }
+
+  .logo_container {
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+  }
+
+  .slogan_text {
+    flex: 1;
+  }
+
+  .logo img {
+    max-width: 220px;
+    /* ajuste o tamanho */
+    height: auto;
+    border-radius: 20%;
+  }
+
+  /* Conteúdo de cadstro cliente */
+
+  :root {
+    --brand: #166f5b;
+    /* verde principal */
+    --brand-600: #115748;
+    /* hover */
+    --ink: #0c1624;
+    /* textos escuros */
+    --muted: #6b7787;
+    /* textos secundários */
+    --bg: #f6f9fb;
+    /* fundo geral */
+    --soft: #e7ebef;
+    /* bordas claras */
+    --card: #e8eaec;
+    /* cartão cinza claro */
+    --white: #fff;
+    --shadow: 0 10px 24px rgba(12, 22, 36, .12);
+    --radius: 18px;
+  }
+
+  * {
+    box-sizing: border-box
+  }
+
+  html,
+  body {
+    height: 100%
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+  }
+
+  img {
+    display: block;
+    max-width: 100%
+  }
+
+
+  /* Topbar */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 48px 1fr 120px;
+    align-items: center;
+    gap: 12px;
+    height: 56px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--soft);
+    background: var(--white)
+  }
+
+
+  .brand img {
+    height: 24px
+  }
+
+  .badge {
+    justify-self: end
+  }
+
+  .badge img {
+    height: 22px
+  }
+
+  /* Pop up cadastro de clientes */
+
+  #modalCliente {
+    border-radius: 10%;
+    border: #fff 2px;
+    width: 50%;
+  }
+
+  /* Container */
+  .container {
+    /* width: min(980px, 92%); */
+    width: 70%;
+    margin-inline: auto;
+    padding: 24px 0
+  }
+
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow)
+  }
+
+  .signup {
+    /* max-width: 540px; */
+    margin: 16px auto 40px;
+    position: relative;
+    overflow: hidden;
+    color: black;
+    width: 110%;
+  }
+
+
+  /* Cabeçalho oval */
+  .card-cap {
+    position: relative;
+    background: var(--brand);
+    height: 120px;
+    margin: 0 0 8px;
+    border-radius: 999px 999px 22px 22px / 80% 80% 22px 22px;
+    display: grid;
+    place-items: center
+  }
+
+  .card-cap h1 {
+    color: #fff;
+    font-size: 42px;
+    letter-spacing: 0.5px;
+    margin: 0;
+    font-weight: 800;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, .06)
+  }
+
+
+  /* Formulario cli */
+  .form {
+    padding: 14px 18px 24px
+  }
+
+  .field {
+    display: grid;
+    gap: 6px;
+    margin: 12px 0
+  }
+
+  .field label {
+    font-weight: 700;
+    color: #1a2432
+  }
+
+  .field input,
+  .field select {
+    width: 100%;
+    height: 42px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    outline: none;
+    border: 2px solid var(--brand);
+    background: #fff;
+    box-shadow: 0 3px 0 rgba(22, 111, 91, .12);
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .field input::placeholder {
+    color: #9aa6b2
+  }
+
+  .field select {
+    appearance: none;
+    background-image: linear-gradient(45deg, transparent 50%, #394456 50%), linear-gradient(135deg, #394456 50%, transparent 50%);
+    background-position: calc(100% - 22px) 18px, calc(100% - 14px) 18px;
+    background-size: 7px 7px;
+    background-repeat: no-repeat
+  }
+
+  /* Checkbox */
+  .checkline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 14px 0 8px;
+    color: #1a2432
+  }
+
+  .checkline input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none
+  }
+
+  .checkline .check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--brand);
+    box-shadow: 0 1px 0 rgba(22, 111, 91, .15);
+    display: inline-block;
+    position: relative
+  }
+
+  .checkline input:checked+.check {
+    background: radial-gradient(circle at 50% 50%, var(--brand) 0 6px, #fff 7px)
+  }
+
+
+  /* Botão cadastrar (cadastro de colientes) */
+
+  .botao_cadastrar {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    background: var(--brand);
+    color: #fff;
+    cursor: pointer;
+    transition: .2s;
+  }
+
+  .btn:hover {
+    background: #083049;
+  }
+
+  /* Botão fechar (X) */
+  #closepopupCli {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-radius: 50%;
+    background: #0d2b3e;
+    /* combine com seu cabeçalho escuro */
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .2);
+  }
+
+  #closepopupCli:hover {
+    opacity: .9;
+  }
+
+
+  /* Responsivo */
+  @media (max-width:520px) {
+    .card-cap {
+      height: 108px
+    }
+
+    .card-cap h1 {
+      font-size: 34px
+    }
+  }
+
+  /* Pop up Cadastro de empresas (emps) */
+
+
+  :root {
+    --brand: #0d2b3e;
+    /* Azul escuro para cabeçalho e botão */
+    --accent: #166f5b;
+    /* Verde */
+    --bg: #f5f7fa;
+    /* Fundo geral */
+    --card: #e3e5e8;
+    /* Cartão */
+    --ink: #0c1624;
+    --muted: #6b7787;
+    --radius: 18px;
+    --shadow: 0 6px 18px rgba(0, 0, 0, .1);
+  }
+
+  #modalEmpresa {
+    border-radius: 10%;
+    border: #fff 2px;
+    width: 50%;
+  }
+
+  /* CONTAINER */
+  .container_emps {
+    width: min(500px, 92%);
+    margin: 30px auto;
+
+    max-width: 540px;
+    margin: 16px auto 40px;
+    position: relative;
+    overflow: hidden;
+    color: black;
+
+  }
+
+  /* CARD emps */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    /* overflow: hidden; */
+  }
+
+  .signup_emps {
+    max-width: 540px;
+    margin: 16px auto 40px;
+    position: relative;
+    overflow: hidden;
+    color: black;
+  }
+
+  /* Cabeçalho oval emps */
+  .card-cabecalhoemps {
+    position: relative;
+    background: var(--brand);
+    height: 120px;
+    margin: 0 0 8px;
+    border-radius: 999px 999px 22px 22px / 80% 80% 22px 22px;
+    display: grid;
+    place-items: center
+  }
+
+  .card-cabecalhoemps h1 {
+    color: #fff;
+    font-size: 42px;
+    letter-spacing: 0.5px;
+    margin: 0;
+    font-weight: 800;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, .06)
+  }
+
+  /* Formulario emps*/
+  .form_emps {
+    padding: 14px 18px 24px
+  }
+
+  .field_emps {
+    display: grid;
+    gap: 6px;
+    margin: 12px 0
+  }
+
+  .field_emps label {
+    font-weight: 700;
+    color: #1a2432
+  }
+
+  .field_emps input,
+  .field_emps select {
+    width: 100%;
+    height: 42px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    outline: none;
+    border: 2px solid var(--brand);
+    background: #fff;
+    box-shadow: 0 3px 0 rgba(22, 111, 91, .12);
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .field_emps input::placeholder {
+    color: #9aa6b2
+  }
+
+
+  /* Checkbox emps */
+  .checkline_emps {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    font-size: 14px;
+  }
+
+  .checkline_emps input {
+    display: none;
+  }
+
+  .check_emps {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+  }
+
+  .checkline_emps input:checked+.check_emps {
+    background: radial-gradient(circle at center, var(--accent) 6px, transparent 7px);
+  }
+
+  /* Botão cadastrar (cadastro de empresas) */
+
+  .btncadastrar_emps {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    background: var(--brand);
+    color: #fff;
+    cursor: pointer;
+    transition: .2s;
+  }
+
+  .btncadastrar_emps:hover {
+    background: #083049;
+  }
+
+  /* Botão fechar (x) pop up emps */
+  #closePopupEmp {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border-radius: 50%;
+    background: #0d2b3e;
+    /* combine com seu cabeçalho escuro */
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .2);
+  }
+
+  #closePopupEmp {
+    opacity: .9;
+  }
+
+  .topbar {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+
+  .theme-dark .topbar {
+    background: #0f1720;
+    border-color: #0b1220;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    margin-left: 45%;
+  }
+</style>
+
+<body>
+
+  <!-- ====== CABEÇALHO ====== -->
+  <header class="topbar">
+
+    <div class="brand">
+      <span class="brand-icon">🛒</span>
+      <strong>Ofert</strong>Match
+    </div>
+    
+  </header>
+
+  <main class="container">
+    <!-- Slogan -->
+    <section class="hero" aria-label="introdução">
+      <div class="logo_container">
+        <div class="slogan_text">
+          <h1>
+            As <span class="accent">melhores promoções</span>, no<br />
+            caminho mais rápido até você.
+          </h1>
+
+          <p>
+            Com o OfertMatch você encontra descontos incríveis e trajetos otimizados até o
+            mercado mais próximo.
+          </p>
+        </div>
+        <div class="logo">
+          <img class="imgLogo" src="img/img_logo.jpeg" alt="imagem da logo">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Como funciona -->
+    <section class="how" aria-label="como funciona">
+      <h2>Como Funciona</h2>
+      <div class="steps">
+        <article class="step">
+          <div class="icon" aria-hidden="true">
+            <img src="img/img_lupa.jpeg" alt="">
+          </div>
+          <h3>Pesquise</h3>
+          <p>Encontre produtos e promoções facilmente.</p>
+        </article>
+
+
+        <article class="step">
+          <div class="icon" aria-hidden="true">
+            <img src="img/img_comprar.jpeg" alt="">
+          </div>
+          <h3>Compre</h3>
+          <p>Veja onde está mais barato em segundos.</p>
+        </article>
+
+
+        <article class="step">
+          <div class="icon" aria-hidden="true">
+            <img src="img/img_localização.jpeg" alt="">
+          </div>
+          <h3>Chegue Rápido</h3>
+          <p>Descubra o trajeto mais curto até o mercado.</p>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- CARDS -->
+    <section class="cta" aria-label="cadastros">
+      <div class="cards">
+        <div class="card">
+          <h4>Você deseja navegar pelas melhores promoções do dia a qualquer hora?</h4>
+          <p class="meta">Realize o seu cadastro aqui!</p>
+          <div class="actions">
+            <a class="btn" id="openPopupCli" href="#">Cadastro</a>
+            <a class="link" href="#">Já tem cadastro? ENTRAR</a>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <h4>Você deseja se tornar um parceiro, cadastrando as melhores promoções?</h4>
+          <p class="meta">Realize o seu cadastro aqui!</p>
+          <div class="actions">
+            <a class="btn" id="openPopupEmp" href="#">Cadastro</a>
+
+            <a class="link" id="openPopupEntrar" href="popup_entrar.html">Já tem cadastro? ENTRAR</a>
+
+          </div>
+        </div>
+
+
+        <!-- Pop up cadstro de cliente -->
+
+        <dialog id="modalCliente">
+          <main class="container" id="caixaCliente"> <!--antes estava modalCliente-->
+            <section class="card signup">
+              <div class="card-cap">
+                <h1>Cadastre-se</h1>
+              </div>
+
+
+              <form class="form" id="form_cliente" action="#" method="post" novalidate>
+                <div class="field">
+                  <label for="email">E-mail</label>
+                  <input id="email" name="email" type="email" placeholder="obrigatório" required>
+                </div>
+
+
+                <div class="field">
+                  <label for="email2">Confirmar e-mail</label>
+                  <input id="email2" name="email2" type="email" placeholder="obrigatório" required>
+                </div>
+
+
+                <div class="field">
+                  <label for="cep">CEP</label>
+                  <input id="cep" name="cep" inputmode="numeric" maxlength="9" placeholder="obrigatório" required>
+                </div>
+
+
+                <div class="field">
+                  <label for="estado">Estado</label>
+                  <select id="estado" name="estado" required>
+                    <option value="" selected disabled>selecionar ▾</option>
+                    <option>AC</option>
+                    <option>AL</option>
+                    <option>AP</option>
+                    <option>AM</option>
+                    <option>BA</option>
+                    <option>CE</option>
+                    <option>DF</option>
+                    <option>ES</option>
+                    <option>GO</option>
+                    <option>MA</option>
+                    <option>MT</option>
+                    <option>MS</option>
+                    <option>MG</option>
+                    <option>PA</option>
+                    <option>PB</option>
+                    <option>PR</option>
+                    <option>PE</option>
+                    <option>PI</option>
+                    <option>RJ</option>
+                    <option>RN</option>
+                    <option>RS</option>
+                    <option>RO</option>
+                    <option>RR</option>
+                    <option>SC</option>
+                    <option>SP</option>
+                    <option>SE</option>
+                    <option>TO</option>
+                  </select>
+                </div>
+
+
+                <div class="field">
+                  <label for="endereco">Endereço</label>
+                  <input id="endereco" name="endereco" type="text" placeholder="obrigatório" required>
+                </div>
+
+
+                <div class="field">
+                  <label for="senha">Senha</label>
+                  <input id="senha" name="senha" type="password" placeholder="obrigatório" required>
+                </div>
+
+
+                <div class="field">
+                  <label for="senha2">Confirmar senha</label>
+                  <input id="senha2" name="senha2" type="password" placeholder="obrigatório" required>
+                </div>
+
+
+                <label class="checkline">
+                  <input type="checkbox" name="lgpd" required>
+                  <span class="check"></span>
+                  Autorização de uso de dados pessoais
+                </label>
+
+                <button class="fecharCli" id="closepopupCli" aria-label="Fechar" data-close="true">×</button>
+
+                <a href="home_clientes.html">
+                  <span class="botao_cadastrar" id="btnCliente" type="submit">
+                    Cadastrar
+                  </span>
+                </a>
+
+              </form>
+            </section>
+          </main>
+        </dialog>
+
+        <!-- Pop up cadarstro de empresas -->
+
+        <dialog id="modalEmpresa">
+          <main class="container_emps" id="caixaEmpresa">
+            <section class="card signup_emps">
+
+              <div class="card-cabecalhoemps">
+                <h1>Cadastre-se</h1>
+              </div>
+
+              <form class="form_emps" id="form_empresa">
+                <div class="field_emps">
+                  <label for="email">E-mail</label>
+                  <input type="email" id="email_emps" placeholder="obrigatório" required>
+                </div>
+
+                <div class="field_emps">
+                  <label for="razao">Razão social</label>
+                  <input type="text" id="razaosocial_emps" placeholder="obrigatório" required>
+                </div>
+
+                <div class="field_emps">
+                  <label for="cep">CEP</label>
+                  <input type="text" id="cep_emps" placeholder="obrigatório" required>
+                </div>
+
+                <div class="field_emps">
+                  <label for="endereco">Endereço</label>
+                  <input type="text" id="endereco_emps" placeholder="obrigatório" required>
+                </div>
+
+                <div class="field_emps">
+                  <label for="cnpj">CNPJ</label>
+                  <input type="text" id="cnpj_emps" placeholder="obrigatório" required>
+                </div>
+
+                <div class="field_emps">
+                  <label for="senha">Senha</label>
+                  <input type="password" id="senha_emps" placeholder="obrigatório" required>
+                </div>
+
+                <div class="field_emps">
+                  <label for="senha2">Confirmar senha</label>
+                  <input type="password" id="senhaconfirmacao_emps" placeholder="obrigatório" required>
+                </div>
+
+                <label class="checkline_emps">
+                  <input type="checkbox" required>
+                  <span class="check_emps"></span>
+                  Autorização de uso de dados pessoais
+                </label>
+
+                <button class="modal__close" id="closePopupEmp" aria-label="Fechar" data-close="true">×</button>
+
+                <a href="home_empresa.html">
+                  <span class="btncadastrar_emps" id="btnEmpresa" type="submit">
+                    Cadastrar
+                  </span>
+                </a>
+
+              </form>
+            </section>
+          </main>
+        </dialog>
+
+        <!-- <script src="script.js"></script> -->
+
+        <script>
+
+          // POP UP CADASTRO CLIENTES //
+
+          // variaveis modal (pop up) cliente 
+          const modalCliente = document.querySelector("#modalCliente");
+          const openPopupCli = document.querySelector("#openPopupCli");
+          const closepopupCli = document.querySelector("#closepopupCli");
+
+          // abrir pop up cliente
+          openPopupCli.addEventListener("click", (e) => {
+            modalCliente.showModal();
+          })
+
+          // fechar pop up cliente
+          closepopupCli.addEventListener("click", (e) => {
+            modalCliente.close();
+          })
+
+          // validação do envio do formulario (pop up cliente)
+          const form_cliente = document.querySelector("#form_cliente");
+
+          form_cliente.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            console.log("Cadastro concluido com sucesso!");
+          })
+
+
+          // POP UP CADASTRO EMPRESA //
+
+          // variaveis modal (pop up) empresa
+          const modalEmpresa = document.querySelector("#modalEmpresa");
+          const openPopupEmp = document.querySelector("#openPopupEmp");
+          const closePopupEmp = document.querySelector("#closePopupEmp");
+
+          // abrir pop up empresa
+          openPopupEmp.addEventListener("click", (e) => {
+            modalEmpresa.showModal();
+          })
+
+          // fechar pop up empresa
+          closePopupEmp.addEventListener("click", (e) => {
+            modalEmpresa.close();
+          })
+
+          // validação do envio do formulario (pop up empresa)
+          const form_empresa = document.querySelector("#form_empresa");
+
+          form_empresa.addEventListener("submit", (e) => {
+            e.preventDefault()
+
+            console.log("Cadastro concluido com sucesso!");
+            alert("Cadastro realizado com sucesso!");
+          })
+
+          // click fora do modal pop up (cliente/empresa) fechar automaticamente
+
+          // dialog.addEventListener("click", (e) => {
+          //   if (Event.target === dialog) {
+          //     dialog.close();
+          //   }
+          // })
+
+
+        </script>
+
+</body>
+
+
+
+</html>

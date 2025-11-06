@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OfertMatch • Lista de Produtos</title>
+  <link rel="stylesheet" href="home_empresa.css"/>
+</head>
+<body data-page="lista-produtos">
+  <!-- MENU LATERAL -->
+  <nav class="menu-lateral" id="menuLateral" role="navigation" aria-label="Menu lateral">
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="logo_menu" />
+    <ul>
+      <li><a href="home_empresa.html"><img src="img/icon_home.png" class="icons_menu" alt=""><span>Início</span></a></li>
+      <li><a href="lista_ofertas.html"><img src="img/icon_promocao.png" class="icons_menu" alt=""><span>Lista de ofertas</span></a></li>
+      <li><a href="lista_produtos.html" class="active"><img src="img/icon_lista_produtos.png" class="icons_menu" alt=""><span>Lista de Produtos</span></a></li>
+      <li><a href="endereco.html"><img src="img/icon_localizacao.png" class="icons_menu" alt=""><span>Endereço</span></a></li>
+      <li><a href="sobre.html"><img src="img/icon_sobre.png" class="icons_menu" alt=""><span>Sobre</span></a></li>
+      <li><a href="contato.html"><img src="img/icon_contato.png" class="icons_menu" alt=""><span>Contato</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- OVERLAY DO MENU -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header>
+    <button id="btnMenu" aria-controls="menuLateral" aria-expanded="false" aria-label="Abrir menu lateral">☰</button>
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="logo"/>
+    <button id="btnTheme" class="btn-theme" aria-pressed="false" title="Tema escuro">🌙</button>
+  </header>
+
+  <main class="listas container">
+    <h1 style="margin:18px 0;">Lista de Produtos</h1>
+
+    <div class="lista-controles">
+      <button id="btnVerProdutos" type="button">Atualizar</button>
+    </div>
+
+    <div class="box-lista" id="boxProdutos">
+      <table class="om-table" aria-label="Produtos">
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Código</th>
+            <th>Estoque</th>
+            <th>Categoria</th>
+            <th>Marca</th>
+            <th>Valor (R$)</th>
+            <th>Validade</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyProdutos"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof carregarProdutos === "function") carregarProdutos();
+    });
+  </script>
+</body>
+</html>

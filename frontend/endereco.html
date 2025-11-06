@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Endereço - OfertMatch</title>
+  <link rel="stylesheet" href="home_empresa.css" />
+  <style>
+    /* ===== ESTILO LEVE PARA ENDEREÇO ===== */
+    main {
+      max-width: 800px;
+      margin: 80px auto;
+      padding: 25px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: background 0.3s;
+    }
+
+    .theme-dark main {
+      background: rgba(20, 30, 40, 0.9);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      text-align: center;
+      color: #1d7a4e;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: 600;
+      text-align: left;
+    }
+
+    input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    input:focus {
+      border-color: #1d7a4e;
+      box-shadow: 0 0 5px rgba(29,122,78,0.3);
+    }
+
+    button {           
+      color: #1d7a4e;                 /* texto branco sempre visível */
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      
+    }
+
+    .info-msg {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #555;
+    }
+
+  </style>
+</head>
+
+<!-- ====== MENU LATERAL DIREITO (painel de opções) ====== -->
+<aside class="menu-opcoes" id="menuOpcoes" aria-label="Opções" aria-hidden="true">
+  <div class="op-header">
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="op-logo" />
+  </div>
+
+  <nav class="op-list">
+    <button type="button" class="op-item" id="opPerfil">
+      <span class="op-ico">👤</span>
+      <span class="op-txt">Perfil</span>
+    </button>
+
+    <button type="button" class="op-item" id="opAlterarTema">
+      <span class="op-ico">🌓</span>
+      <span class="op-txt">Alterar Tema</span>
+    </button>
+
+    <button type="button" class="op-item" id="opSair">
+      <span class="op-ico">🚪</span>
+      <span class="op-txt">Sair</span>
+    </button>
+  </nav>
+</aside>
+
+
+<body>
+  <!-- MENU LATERAL -->
+  <nav class="menu-lateral" id="menuLateral">
+    <img src="img/Logo_Menor.png" alt="OfertMatch" class="logo_menu" />
+    <ul>
+      <li><a href="home_empresa.html"><img src="img/icon_home.png" class="icons_menu"> Início</a></li>
+      <li><a href="lista_ofertas.html"><img src="img/icon_lista_produtos.png" class="icons_menu"> Lista de Produtos</a></li>
+      <li><a href="lista_produtos.html"><img src="img/icon_promocao.png" class="icons_menu"> Lista de Ofertas</a></li>
+      <li><a href="endereco.html" class="active"><img src="img/icon_localizacao.png" class="icons_menu"> Endereço</a></li>
+      <li><a href="sobre.html"><img src="img/icon_sobre.png" class="icons_menu"> Sobre</a></li>
+      <li><a href="contato.html"><img src="img/icon_contato.png" class="icons_menu"> Contato</a></li>
+    </ul>
+  </nav>
+
+  <!-- FUNDO ESCURO -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- ====== CABEÇALHO ====== -->
+    <header>
+      <!-- abre/fecha o menu esquerdo -->
+      <button id="btnMenu" aria-controls="menuLateral" aria-expanded="false" aria-label="Abrir menu lateral">☰</button>
+
+      <!-- Logo -->
+      <img src="img/Logo_Menor.png" alt="OfertMatch" class="logo" />
+
+      <!-- Ações à direita: tema + opções -->
+      <div class="header-actions" style="display:flex; align-items:center; gap:10px;">
+        <!-- Botão tema: Script já troca ícone e persiste no localStorage -->
+        <button id="btnTheme" class="btn-theme" aria-pressed="false" aria-label="Ativar tema escuro" title="Tema escuro">🌙</button>
+
+        <!-- Botão de configurações: abre o painel direito -->
+        <button id="btnConfig" aria-label="Abrir opções">⚙</button>
+      </div>
+    </header>
+
+
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+    <h1>Configuração de Endereço</h1>
+
+    <p class="info-msg">Visualize e atualize o endereço da sua empresa cadastrado no sistema.</p>
+
+    <form id="formEndereco">
+      <label for="rua">Rua / Avenida:</label>
+      <input type="text" id="rua" name="rua" placeholder="Ex: Av. Dom Aguirre, 1500" required>
+
+      <label for="bairro">Bairro:</label>
+      <input type="text" id="bairro" name="bairro" placeholder="Ex: Jardim Faculdade" required>
+
+      <label for="cidade">Cidade:</label>
+      <input type="text" id="cidade" name="cidade" placeholder="Ex: Sorocaba" required>
+
+      <label for="estado">Estado:</label>
+      <input type="text" id="estado" name="estado" placeholder="Ex: SP" maxlength="2" required>
+
+      <label for="cep">CEP:</label>
+      <input type="text" id="cep" name="cep" placeholder="Ex: 18030-000" required>
+
+      <button type="submit">Salvar Alterações</button>
+    </form>
+  </main>
+
+  <!-- Toast para mensagens -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+
+  <!-- Script específico para a página -->
+  <script>
+    const ENDPOINT_EMPRESAS = "https://ofertmatch.onrender.com/api/empresas";
+
+    // Carrega dados do endereço (exemplo de fetch GET)
+    async function carregarEndereco() {
+      try {
+        const r = await fetch(ENDPOINT_EMPRESAS);
+        const data = await r.json();
+
+        // supondo que vem um array de empresas e pegamos a primeira
+        if (data.data && data.data.length > 0) {
+          const emp = data.data[0];
+          document.getElementById("rua").value = emp.endereco?.split(",")[0] || "";
+          document.getElementById("bairro").value = emp.bairro || "";
+          document.getElementById("cidade").value = emp.cidade || "";
+          document.getElementById("estado").value = emp.estado || "";
+          document.getElementById("cep").value = emp.cep || "";
+        }
+      } catch (err) {
+        console.error("Erro ao carregar endereço:", err);
+      }
+    }
+
+    // Envia atualização (POST ou PUT)
+    document.getElementById("formEndereco").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const payload = {
+        endereco: document.getElementById("rua").value,
+        bairro: document.getElementById("bairro").value,
+        cidade: document.getElementById("cidade").value,
+        estado: document.getElementById("estado").value,
+        cep: document.getElementById("cep").value
+      };
+
+      try {
+        const r = await fetch(ENDPOINT_EMPRESAS, {
+          method: "POST", // ou PUT dependendo do endpoint
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const res = await r.json();
+        alert("Endereço atualizado com sucesso!");
+      } catch (err) {
+        alert("Erro ao salvar endereço. Tente novamente.");
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", carregarEndereco);
+  </script>
+</body>
+</html>

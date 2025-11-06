@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OfertMatch — Rotas</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body class="theme-light">
+  <header class="topbar">
+    <button class="icon-btn" id="btnMenu">☰</button>
+    <div class="brand"><span class="brand-icon">🛒</span><strong>Ofert</strong>Match</div>
+    <div class="top-actions">
+      <a class="icon-btn" href="../ofertas/index.html" title="Voltar às ofertas">⬅️</a>
+      <button class="icon-btn" id="btnTheme">⚙️</button>
+    </div>
+  </header>
+
+  <section class="title-row">
+    <h1>ROTAS</h1>
+  </section>
+
+  <section class="route-bar">
+    <label for="origem">Ponto de partida</label>
+    <input id="origem" class="route-input" placeholder="Digite seu endereço…" />
+    <button class="btn" id="btnCalc">Calcular</button>
+  </section>
+
+  <section class="map-wrap">
+    <iframe
+      id="mapFrame"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.343967427532!2d-47.469!3d-23.553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c58a6c8d9b7c93%3A0x6b2d0e!2sP%C3%A3o%20de%20A%C3%A7%C3%BAcar!5e0!3m2!1spt-BR!2sBR!4v1700000000000">
+    </iframe>
+  </section>
+
+  <aside class="drawer right" id="drawerMenu">
+    <div class="drawer-header">
+      <div class="brand big"><span class="brand-icon">🛒</span><strong>Ofert</strong>Match</div>
+      <button class="icon-btn close" data-close="drawerMenu">✕</button>
+    </div>
+    <nav class="drawer-body">
+      <a class="nav-item" href="../home_clientes.html">🏠 Início</a>
+      <a class="nav-item" href="../ofertas/index.html">🛍️ Ofertas</a>
+      <button class="nav-item" id="toggleTheme">🌗 Alterar Tema</button>
+    </nav>
+  </aside>
+
+  <div class="backdrop" id="backdrop"></div>
+  <script src="../assets/app.js"></script>
+  <script>
+    document.getElementById('btnCalc').addEventListener('click', () => {
+      const origem = encodeURIComponent(document.getElementById('origem').value || 'Sorocaba, SP');
+      const destino = encodeURIComponent('Pão de Açúcar, Sorocaba');
+      const url = `https://www.google.com/maps/dir/?api=1&origin=${origem}&destination=${destino}`;
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>
