@@ -11,7 +11,7 @@ let menuAberto = false;
 
 // ===== CONFIG API =====
 // Troque o domínio se mudar o Render
-const BASE_URL = "https://ofertmatch.onrender.com";
+const BASE_URL = "https://ofertmatch-2-0.onrender.com";
 
 const ENDPOINTS = {
   empresas: `${BASE_URL}/api/empresas`,
